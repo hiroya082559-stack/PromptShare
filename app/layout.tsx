@@ -6,9 +6,25 @@ import Navbar from "@/components/Navbar";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 
+const BASE_URL = "https://prompt-share-eight-alpha.vercel.app";
+
 export const metadata: Metadata = {
   title: "PromptShare - AIプロンプト共有プラットフォーム",
-  description: "AIプロンプトを共有・発見できるコミュニティ",
+  description: "ChatGPT・Claude・Geminiなど、みんなが使っている便利なAIプロンプトを共有・発見できるコミュニティサイト。",
+  metadataBase: new URL(BASE_URL),
+  openGraph: {
+    title: "PromptShare - AIプロンプト共有プラットフォーム",
+    description: "ChatGPT・Claude・Geminiなど、みんなが使っている便利なAIプロンプトを共有・発見できるコミュニティサイト。",
+    url: BASE_URL,
+    siteName: "PromptShare",
+    locale: "ja_JP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "PromptShare - AIプロンプト共有プラットフォーム",
+    description: "便利なAIプロンプトを共有・発見できるコミュニティサイト。",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
