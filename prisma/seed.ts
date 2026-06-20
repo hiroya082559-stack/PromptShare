@@ -1,11 +1,9 @@
-import path from "path";
-import { PrismaLibSql } from "@prisma/adapter-libsql";
+import "dotenv/config";
+import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "../app/generated/prisma/client";
 import bcrypt from "bcryptjs";
 
-const rawPath = path.resolve(process.cwd(), "dev.db");
-const dbUrl = `file:${rawPath.replace(/\\/g, "/")}`;
-const adapter = new PrismaLibSql({ url: dbUrl });
+const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL! });
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
