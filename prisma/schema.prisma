@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  prompts   Prompt[]
+  likes     Like[]
+  comments  Comment[]
+}
+
+model Prompt {
+  id        String    @id @default(cuid())
+  title     String
+  content   String
+  category  String
+  tags      String    @default("[]")
+  copyCount Int       @default(0)
+  createdAt DateTime  @default(now())
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  String
+  likes     Like[]
+  comments  Comment[]
+}
+
+model Like {
+  id       String @id @default(cuid())
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String
+  prompt   Prompt @relation(fields: [promptId], references: [id])
+  promptId String
+
+  @@unique([userId, promptId])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  body      String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  prompt    Prompt   @relation(fields: [promptId], references: [id])
+  promptId  String
+}
