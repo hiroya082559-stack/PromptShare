@@ -25,6 +25,9 @@ export const metadata: Metadata = {
     title: "PromptShare - AIプロンプト共有プラットフォーム",
     description: "便利なAIプロンプトを共有・発見できるコミュニティサイト。",
   },
+  verification: {
+    google: "11LogXbajfzyL93c8_Tn7d_-5Aisr2Rlo1ur8sRHpto",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
